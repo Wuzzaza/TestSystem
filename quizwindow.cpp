@@ -10,7 +10,8 @@ QuizWindow::QuizWindow(QWidget *parent) :
 
     testStorage = TestStorage::getInstance();
     timeLeftInSeconds = testStorage->timeForTestInMinutes * 60;
-
+    testListIterator = new QMapIterator<QListWidgetItem*, TestUnit*>(testStorage->testList);
+    if(testListIterator->hasNext())currentTest = testListIterator->next().value();
     timer = new QTimer(this);
     timer->setInterval(1000);
 
@@ -28,6 +29,8 @@ QuizWindow::QuizWindow(QWidget *parent) :
         answers.push_back(answer);
 
     }
+    loadTest(currentTest);
+    updateTestLabel();
 
 }
 
@@ -38,7 +41,26 @@ QuizWindow::~QuizWindow()
 
 void QuizWindow::endTest()
 {
+    timer->stop();
+    ui->pushButton->setEnabled(false);
+    ui->textEdit->setEnabled(false);
+    ui->groupBox->setEnabled(false);
+    testResultWindow = new TestResultWindow(this, testStorage->testList.size(), rightAnswers);
+    testResultWindow->show();
 
+}
+
+void QuizWindow::updateTestLabel()
+{
+    ui->testNumberLabel->setText("Test " + QString::number(currentTestIndex + 1) + " of " + QString::number(testStorage->testList.size()));
+}
+
+bool QuizWindow::checkIfTestIsCorrect()
+{
+    for(int i = 0; i < 4; i++){
+        if(answers[i]->isCorrect() != currentTest->answers[i].isCorrect) return false;
+    }
+    return true;
 }
 
 void QuizWindow::updateTime()
@@ -51,4 +73,31 @@ void QuizWindow::updateTime()
         timer->stop();
         endTest();
     }
+}
+
+bool QuizWindow::loadTest(TestUnit * testUnit)
+{
+    ui->textEdit->setText(testUnit->question);
+
+    for(int i = 0; i < 4; i++){
+        answers[i]->setText(testUnit->answers[i].answerText);
+        answers[i]->setCorrect(false);
+    }
+
+    return true;
+}
+
+void QuizWindow::on_pushButton_clicked()
+{
+    if(checkIfTestIsCorrect())rightAnswers++;
+
+    if((currentTestIndex + 1) < testStorage->testList.size()) {
+        currentTestIndex++;
+        if(testListIterator->hasNext()){
+            currentTest = testListIterator->next().value();
+            loadTest(currentTest);
+        }
+        updateTestLabel();
+    }
+    else endTest();
 }

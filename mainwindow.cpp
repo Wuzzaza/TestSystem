@@ -35,6 +35,7 @@ void MainWindow::beginTest()
 void MainWindow::on_actionEdit_Test_triggered()
 {
     if(quizWindow)quizWindow->hide();
+    if(beginTestDialog)beginTestDialog->hide();
     testEditor->show();
 }
 

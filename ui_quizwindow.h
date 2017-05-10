@@ -40,13 +40,14 @@ public:
         textEdit = new QTextEdit(QuizWindow);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setGeometry(QRect(10, 30, 591, 221));
+        textEdit->setFocusPolicy(Qt::NoFocus);
         textEdit->setReadOnly(true);
         testNumberLabel = new QLabel(QuizWindow);
         testNumberLabel->setObjectName(QStringLiteral("testNumberLabel"));
         testNumberLabel->setGeometry(QRect(10, 0, 541, 31));
         groupBox = new QGroupBox(QuizWindow);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(5, 250, 600, 221));
+        groupBox->setGeometry(QRect(5, 260, 600, 221));
         pushButton = new QPushButton(QuizWindow);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(530, 480, 75, 23));
@@ -74,7 +75,7 @@ public:
         QuizWindow->setWindowTitle(QApplication::translate("QuizWindow", "Form", 0));
         testNumberLabel->setText(QApplication::translate("QuizWindow", "TextLabel", 0));
         groupBox->setTitle(QApplication::translate("QuizWindow", "Your answer", 0));
-        pushButton->setText(QApplication::translate("QuizWindow", "Accept", 0));
+        pushButton->setText(QApplication::translate("QuizWindow", "Next", 0));
         groupBox_2->setTitle(QApplication::translate("QuizWindow", "Time Left", 0));
         timeLeftLabel->setText(QApplication::translate("QuizWindow", "00:00", 0));
     } // retranslateUi

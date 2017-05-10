@@ -28,7 +28,7 @@ TestEditor::~TestEditor()
 
 void TestEditor::on_pushButton_clicked()
 {
-    QListWidgetItem *newWidgetListItem = new QListWidgetItem("Test#" + QString::number(testStorage->testList.size() + 1));
+    QListWidgetItem *newWidgetListItem = new QListWidgetItem("Test #" + QString::number(testStorage->testList.size() + 1));
     TestUnit *newTest = new TestUnit;
     ui->listWidget->addItem(newWidgetListItem);
     testStorage->testList.insert(newWidgetListItem, newTest);
