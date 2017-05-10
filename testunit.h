@@ -11,6 +11,13 @@ class TestUnit : public QObject
     struct Answer{
         QString answerText = "";
         bool isCorrect = false;
+
+        Answer(){
+
+            answerText = "";
+            isCorrect = false;
+
+        }
     };
 
 public:

@@ -17,6 +17,7 @@ private:
 public:
     static TestStorage* getInstance();
     QMap <QListWidgetItem*, TestUnit*> testList;
+    int timeForTestInMinutes = 0;
 
 signals:
 

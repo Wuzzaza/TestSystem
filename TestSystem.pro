@@ -18,16 +18,25 @@ SOURCES += main.cpp\
     teststorage.cpp \
     testeditor.cpp \
     testeditoranswer.cpp \
-    testunit.cpp
+    testunit.cpp \
+    quizwindow.cpp \
+    begintestdialog.cpp
 
 HEADERS  += mainwindow.h \
     loginform.h \
     teststorage.h \
     testeditor.h \
     testeditoranswer.h \
-    testunit.h
+    testunit.h \
+    quizwindow.h \
+    begintestdialog.h
 
 FORMS    += mainwindow.ui \
     loginform.ui \
     testeditor.ui \
-    testeditoranswer.ui
+    testeditoranswer.ui \
+    quizwindow.ui \
+    begintestdialog.ui
+
+CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
+

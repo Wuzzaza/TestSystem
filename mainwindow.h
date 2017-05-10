@@ -6,6 +6,8 @@
 
 #include "loginform.h"
 #include "testeditor.h"
+#include "begintestdialog.h"
+#include "quizwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,11 +24,26 @@ public:
 
 public slots:
     void logIn(QString login, QString password);
+    void beginTest();
+
+private slots:
+    void on_actionEdit_Test_triggered();
+
+    void on_actionBegin_Test_triggered();
+
+    void on_actionLog_Off_triggered();
+
+    void on_actionExit_triggered();
+
+
 
 private:
     Ui::MainWindow *ui;
     LoginForm *loginForm = NULL;
     TestEditor *testEditor = NULL;
+    BeginTestDialog *beginTestDialog = NULL;
+    QuizWindow *quizWindow = NULL;
+
 };
 
 #endif // MAINWINDOW_H

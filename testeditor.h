@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QListWidgetItem>
+#include <QDebug>
 
 #include "testeditoranswer.h"
 #include "testunit.h"
@@ -25,11 +26,22 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    bool on_listWidget_activated(const QModelIndex &index);
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_lineEdit_editingFinished();
+
 private:
     Ui::TestEditor *ui;
     QVector <TestEditorAnswer*> answers;
     TestStorage* testStorage = NULL;
     bool loadTest(TestUnit*testUnit);
+    bool saveTest();
+
+    void setCurrentQuestionActive (bool active);
 
 };
 
