@@ -45,7 +45,10 @@ void QuizWindow::endTest()
     ui->pushButton->setEnabled(false);
     ui->textEdit->setEnabled(false);
     ui->groupBox->setEnabled(false);
-    testResultWindow = new TestResultWindow(this, testStorage->testList.size(), rightAnswers);
+    int elapsedTimeInSeconds = testStorage->timeForTestInMinutes * 60 - timeLeftInSeconds;
+    QTime timeElapsed(elapsedTimeInSeconds / 3600, (elapsedTimeInSeconds % 3600) / 60, elapsedTimeInSeconds % 60, 0);
+
+    testResultWindow = new TestResultWindow(this, testStorage->testList.size(), rightAnswers, timeElapsed.toString(Qt::RFC2822Date));
     testResultWindow->show();
 
 }

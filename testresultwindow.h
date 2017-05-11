@@ -12,7 +12,7 @@ class TestResultWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit TestResultWindow(QWidget *parent = 0, int testNumber = 0, int rightAnswers = 0);
+    explicit TestResultWindow(QWidget *parent = 0, int testNumber = 0, int rightAnswers = 0, QString elapsedTime = "");
     ~TestResultWindow();
 
 private slots:

@@ -1,12 +1,13 @@
 #include "testresultwindow.h"
 #include "ui_testresultwindow.h"
 
-TestResultWindow::TestResultWindow(QWidget *parent, int testNumber, int rightAnswers) :
+TestResultWindow::TestResultWindow(QWidget *parent, int testNumber, int rightAnswers, QString elapsedTime) :
     QWidget(NULL),
     ui(new Ui::TestResultWindow)
 {
     ui->setupUi(this);
-    ui->resultLabel->setText("You solved " + QString::number(rightAnswers) + " of " + QString::number(testNumber));
+    ui->resultLabel->setText("Correct answers " + QString::number(rightAnswers) + " of " + QString::number(testNumber));
+    ui->timeLabel->setText("Time elapsed " + elapsedTime);
 }
 
 TestResultWindow::~TestResultWindow()

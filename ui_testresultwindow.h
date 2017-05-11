@@ -26,7 +26,9 @@ class Ui_TestResultWindow
 public:
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
+    QLabel *label;
     QLabel *resultLabel;
+    QLabel *timeLabel;
     QPushButton *pushButton;
 
     void setupUi(QWidget *TestResultWindow)
@@ -40,14 +42,25 @@ public:
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(verticalLayoutWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setAlignment(Qt::AlignCenter);
+
+        verticalLayout->addWidget(label);
+
         resultLabel = new QLabel(verticalLayoutWidget);
         resultLabel->setObjectName(QStringLiteral("resultLabel"));
         QFont font;
-        font.setPointSize(12);
+        font.setPointSize(8);
         resultLabel->setFont(font);
-        resultLabel->setAlignment(Qt::AlignCenter);
+        resultLabel->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         verticalLayout->addWidget(resultLabel);
+
+        timeLabel = new QLabel(verticalLayoutWidget);
+        timeLabel->setObjectName(QStringLiteral("timeLabel"));
+
+        verticalLayout->addWidget(timeLabel);
 
         pushButton = new QPushButton(verticalLayoutWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
@@ -63,7 +76,9 @@ public:
     void retranslateUi(QWidget *TestResultWindow)
     {
         TestResultWindow->setWindowTitle(QApplication::translate("TestResultWindow", "Form", 0));
+        label->setText(QApplication::translate("TestResultWindow", "Test Results:", 0));
         resultLabel->setText(QString());
+        timeLabel->setText(QApplication::translate("TestResultWindow", "TextLabel", 0));
         pushButton->setText(QApplication::translate("TestResultWindow", "Ok", 0));
     } // retranslateUi
 
