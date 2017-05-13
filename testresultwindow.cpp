@@ -8,6 +8,7 @@ TestResultWindow::TestResultWindow(QWidget *parent, int testNumber, int rightAns
     ui->setupUi(this);
     ui->resultLabel->setText("Correct answers " + QString::number(rightAnswers) + " of " + QString::number(testNumber));
     ui->timeLabel->setText("Time elapsed " + elapsedTime);
+    this->setWindowFlags(Qt::WindowStaysOnTopHint);
 }
 
 TestResultWindow::~TestResultWindow()

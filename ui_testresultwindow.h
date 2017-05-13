@@ -75,7 +75,7 @@ public:
 
     void retranslateUi(QWidget *TestResultWindow)
     {
-        TestResultWindow->setWindowTitle(QApplication::translate("TestResultWindow", "Form", 0));
+        TestResultWindow->setWindowTitle(QApplication::translate("TestResultWindow", "Test Results", 0));
         label->setText(QApplication::translate("TestResultWindow", "Test Results:", 0));
         resultLabel->setText(QString());
         timeLabel->setText(QApplication::translate("TestResultWindow", "TextLabel", 0));

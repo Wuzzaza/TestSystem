@@ -70,6 +70,8 @@ bool TestEditor::saveTest()
         qDebug() << i;
 
     }
+
+    testStorage->saveAllTests();
 }
 
 void TestEditor::setCurrentQuestionActive(bool active)

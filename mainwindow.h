@@ -3,11 +3,13 @@
 
 #include <QMainWindow>
 #include <QDebug>
+#include <QCloseEvent>
 
 #include "loginform.h"
 #include "testeditor.h"
 #include "begintestdialog.h"
 #include "quizwindow.h"
+#include "teststorage.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,6 +21,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void closeEvent(QCloseEvent *event);
     ~MainWindow();
 
 

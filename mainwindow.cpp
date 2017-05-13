@@ -20,6 +20,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow:: closeEvent (QCloseEvent *event){
+    TestStorage::getInstance()->saveAllTests();
+    qDebug() << "Test Saved";
+
+}
+
 void MainWindow::logIn(QString login, QString password)
 {
     qDebug() << "Logging in";
