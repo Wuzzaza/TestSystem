@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QListWidgetItem>
+#include <QMapIterator>
 #include <QDebug>
 
 #include "testeditoranswer.h"

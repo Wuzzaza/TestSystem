@@ -65,13 +65,51 @@ void TestStorage::saveAllTests()
 {
     QByteArray byteArr;
     QDataStream dataStream(&byteArr, QIODevice::WriteOnly);
-    dataStream << testList;
+    dataStream << timeForTestInMinutes;
+    dataStream << testList.size();
+    QMapIterator <QListWidgetItem*, TestUnit*> testListIterator(testList);
+    while(testListIterator.hasNext()){
+        TestUnit *nextTestUnit = testListIterator.next().value();
+        dataStream << nextTestUnit->question;
+        for(int i = 0; i < 4; i++){
+            dataStream << nextTestUnit->answers[i].answerText;
+            dataStream << nextTestUnit->answers[i].isCorrect;
+        }
+    }
+
     writeToFile("myTestsSaveFile", byteArr);
 }
 
-void TestStorage::readAllTestsFromFile()
+bool TestStorage::readAllTestsFromFile()
 {
     // TODO add load from file function
+    if (!fileExists("myTestsSaveFile")) {
+        qDebug() << "No Test Save File Found";
+        return false;
+    }
+    QByteArray byteArr = readFromFile("myTestsSaveFile");
+    QDataStream dataStream(&byteArr, QIODevice::ReadOnly);
+
+    dataStream >> timeForTestInMinutes;
+    int testListSize;
+    dataStream >> testListSize;
+
+    if (testListSize == 0)return false;
+
+    qDebug() << QString::number(testListSize) << " saved tests in SaveFile.";
+
+    for (int i = 0; i < testListSize; i++){
+        TestUnit *newTestUnit = new TestUnit;
+        dataStream >> newTestUnit->question;
+        for(int i = 0; i < 4; i++){
+            dataStream >> newTestUnit->answers[i].answerText;
+            dataStream >> newTestUnit->answers[i].isCorrect;
+        }
+        QListWidgetItem *newListWidgetItem = new QListWidgetItem("Test #" + QString::number(i + 1));
+        testList.insert(newListWidgetItem, newTestUnit);
+    }
+
+    return true;
 }
 
 TestStorage *TestStorage::getInstance()

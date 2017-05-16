@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QMap>
+#include <QMapIterator>
 #include <QListWidgetItem>
 #include <QFile>
 #include <QByteArray>
@@ -24,7 +25,7 @@ private:
 public:
     static TestStorage* getInstance();
     void saveAllTests();
-    void readAllTestsFromFile();
+    bool readAllTestsFromFile();
 
     QMap <QListWidgetItem*, TestUnit*> testList;
     int timeForTestInMinutes = 0;

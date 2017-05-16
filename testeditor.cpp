@@ -17,6 +17,16 @@ TestEditor::TestEditor(QWidget *parent) :
     }
 
     testStorage = TestStorage::getInstance();
+    if(testStorage->readAllTestsFromFile()){
+
+        ui->lineEdit->setText(QString::number(testStorage->timeForTestInMinutes));
+
+        QMapIterator <QListWidgetItem*, TestUnit*> testListIterator(testStorage->testList);
+        while (testListIterator.hasNext()) {
+            ui->listWidget->addItem(testListIterator.next().key());
+        }
+
+    }
 
     setCurrentQuestionActive(false);
 }
